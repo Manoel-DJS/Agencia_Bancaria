@@ -1,4 +1,4 @@
-package Sistema;
+package Sistema.Models;
 
 public class Pessoa {
 
