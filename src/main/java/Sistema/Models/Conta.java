@@ -51,8 +51,35 @@ public class Conta {
                 "\n";
     }
 
-    public void depositar(double valor){
+    // Criação dos métodos para manipulação da Conta
 
+    public void depositar(double valor){
+        if(valor > 0){
+            this.saldo = getSaldo() + valor; // setSaldo(getSaldo() + valor) outra forma de manipulação
+            System.out.println("Seu deposito foi realizado com sucesso!");
+        } else{
+            System.out.println("Não foi possível realizar o deposito!");
+        }
+    }
+
+    public void sacar(double valor){
+        if(valor > 0 && this.getSaldo() >= valor){
+            setSaldo(getSaldo() - valor);
+            System.out.println("Seu saque foi realizado com sucesso!");
+        } else {
+            System.out.println("Não foi possível realizar o saque.");
+        }
+    }
+
+    public void transferir(Conta contaParaDeposito, double valor){
+        if(valor > 0 && this.getSaldo() >= 0){
+            this.setSaldo(getSaldo() - valor);
+
+            contaParaDeposito.saldo = contaParaDeposito.getSaldo() + valor;
+            System.out.println("Transferência realizada com sucesso!");
+        } else {
+            System.out.println("Não foi possível realizar a transferência!");
+        }
     }
 
 }
