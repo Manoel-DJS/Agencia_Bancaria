@@ -1,6 +1,7 @@
 package Sistema;
 
 import Sistema.Models.Conta;
+import Sistema.Models.Pessoa;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -31,12 +32,81 @@ public class AgenciaBancaria {
 
         switch (optionMenu){
             case 1:
-                System.out.println("Hello");
+                criarConta();
                 break;
+            case 2:
+                depositar();
+                break;
+            case 3:
+                // sacar();
+                break;
+            case 4:
+                // transferir();
+                break;
+            case 5:
+                // listar();
+                break;
+            case 6:
+                System.out.println("Obrigado por usar nosso serviço.");
+                System.exit(0);
             default:
+                System.out.println("Opção inválida!");
+                menuOperacoes();
                 break;
         }
     }
 
+    public static void criarConta() {
+        System.out.println("\nNome: ");
+        String nome = input.next();
+
+        System.out.println("\nCPF: ");
+        String cpf = input.next();
+
+        System.out.println("\nEmail: ");
+        String email = input.next();
+
+        Pessoa pessoaCliente = new Pessoa(nome,cpf,email);
+
+        Conta contaCliente = new Conta(pessoaCliente);
+
+        contasBancarias.add(contaCliente);
+        System.out.println("Sua Conta foi criada com sucesso!");
+
+        menuOperacoes();
+    }
+
+    private static Conta encontrarConta(int numeroConta){
+        Conta conta = null;
+        if(contasBancarias.size() > 0){
+            // foreich para procurar o numero da conta
+            for(Conta c: contasBancarias){
+                if(c.getNumeroConta() == numeroConta){
+                    conta = c;
+                }
+            }
+        }
+        return conta;
+    }
+
+    public static void depositar(){
+        System.out.println("Número da conta: ");
+        int numeroDaConta = input.nextInt();
+
+        Conta conta = encontrarConta(numeroDaConta);
+
+        if (conta != null){
+            System.out.println("Valor que desejar depositar: ");
+            double valorDeposito = input.nextDouble();
+            conta.depositar(valorDeposito);
+
+            System.out.println("Deposito efetuado com sucesso!");
+        } else {
+            System.out.println( "Deposito não realizado \n" +
+                                "Conta não encontrada");
+        }
+
+        menuOperacoes();
+    }
 
 }

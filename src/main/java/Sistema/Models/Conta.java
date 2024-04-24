@@ -4,7 +4,7 @@ import Sistema.Utilities.Utils;
 
 public class Conta {
 
-    private static int countContas = 0;
+    private static int countContas = 1;
     private int numeroConta;
     private Pessoa pessoa;
     private double saldo = 0;
