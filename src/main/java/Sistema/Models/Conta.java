@@ -3,7 +3,6 @@ package Sistema.Models;
 import Sistema.Utilities.Utils;
 
 public class Conta {
-
     private static int countContas = 1;
     private int numeroConta;
     private Pessoa pessoa;
@@ -53,7 +52,6 @@ public class Conta {
     }
 
     // Criação dos métodos para manipulação da Conta
-
     public void depositar(double valor){
         if(valor > 0){
             this.saldo = getSaldo() + valor; // setSaldo(getSaldo() + valor) outra forma de manipulação

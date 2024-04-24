@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class Utils {
-    // Formatação de números
+    // Formatação de valores
     static NumberFormat formatNumber = new DecimalFormat("R$ #,##0.00");
 
     public static String doubleToString(double valor){
