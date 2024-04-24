@@ -11,6 +11,7 @@ public class Conta {
 
     public Conta(Pessoa pessoa) {
         this.pessoa = pessoa;
+        this.numeroConta += countContas;
         countContas += 1;
     }
 

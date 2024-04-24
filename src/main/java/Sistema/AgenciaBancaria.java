@@ -38,13 +38,13 @@ public class AgenciaBancaria {
                 depositar();
                 break;
             case 3:
-                // sacar();
+                sacar();
                 break;
             case 4:
-                // transferir();
+                transferir();
                 break;
             case 5:
-                // listar();
+                listar();
                 break;
             case 6:
                 System.out.println("Obrigado por usar nosso serviço.");
@@ -109,4 +109,54 @@ public class AgenciaBancaria {
         menuOperacoes();
     }
 
+    public static void sacar(){
+        System.out.println("Digite o número da conta: ");
+        int numeroDaConta = input.nextInt();
+
+        Conta conta = encontrarConta(numeroDaConta);
+
+        if(conta != null){
+            System.out.println("Digite o valor que deseja sacar: ");
+            double valorSaque = input.nextDouble();
+
+            conta.sacar(valorSaque);
+            System.out.println("Saque Realizado com sucesso!");
+        } else{
+            System.out.println("Saque não realizado!");
+        }
+        menuOperacoes();
+    }
+
+    public static void transferir(){
+        System.out.println("Número da conta do remetente: ");
+        int numeroContaRemetente = input.nextInt();
+
+        Conta contaRemetente = encontrarConta(numeroContaRemetente);
+
+        if (contaRemetente != null){
+            System.out.println("Número da conta do destinatário: ");
+            int numeroContaDestinatario = input.nextInt();
+
+            Conta contaDestinatario = encontrarConta(numeroContaDestinatario);
+
+            if(contaDestinatario != null){
+                System.out.println("Valor da transferência: ");
+                double valor = input.nextInt();
+
+                contaRemetente.transferir(contaDestinatario,valor);
+            }
+        }
+        menuOperacoes();
+    }
+
+    public static void listar(){
+        if (contasBancarias.size() > 0){
+            for( Conta c: contasBancarias){
+                System.out.println(c);
+            }
+        }else{
+            System.out.println("Sem conta cadastradas no sistema");
+        }
+        menuOperacoes();
+    }
 }
